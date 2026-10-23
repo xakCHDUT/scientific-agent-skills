@@ -4,7 +4,18 @@ Review notes for the [security report](security-report.md) and its
 [machine-readable companion](security-report.json). Automated findings require code review;
 neither a finding nor the scanner's `is_safe` field is a security certification.
 
-## Current report: 2026-09-13
+## Targeted code audit: 2026-10-23
+
+The [research, citation and slide audit](security-audit-2026-10-23.md) reviews
+the October 12 snapshot, traces the priority skills' actual data flows, and
+documents offline reproductions and minimal fixes. It distinguishes conditional
+redirect/logging defects, intended provider uploads and scanner heuristics. The
+October report has 92 per-skill plus 377 cross-skill findings and nine skills with
+behavioral analyzer contract errors; its safe count is not a certification.
+The original generated report is preserved. This targeted review does not clear
+all 177 skills or replace a new scan after changes.
+
+## Historical report: 2026-09-13
 
 **Report generated:** 2026-09-13 14:32 UTC, scanner 2.1.0, model `claude-opus-5`.
 The report covers all **165 skills**: **661 findings** (28 CRITICAL, 4 HIGH,

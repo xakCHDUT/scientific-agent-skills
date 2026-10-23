@@ -262,8 +262,14 @@ IMPORTANT - NO FIGURE NUMBERS:
         try:
             response = requests.post(
                 f"{self.base_url}/{endpoint}", headers=headers,
-                json=payload, timeout=120,
+                json=payload, timeout=120, allow_redirects=False,
             )
+            # A 307/308 can forward the prompt and attached images to another
+            # origin even when requests strips the Authorization header.
+            if 300 <= response.status_code < 400:
+                raise RuntimeError(
+                    f"API redirect refused (HTTP {response.status_code})"
+                )
             try:
                 response_json = response.json()
             except ValueError:

@@ -77,6 +77,8 @@ class RoutingTests(unittest.TestCase):
         lookup = ResearchLookup(force_backend="chat", chat_model="core")
 
         class FakeResponse:
+            status_code = 200
+
             def raise_for_status(self):
                 return None
 
@@ -360,6 +362,7 @@ class RoutingTests(unittest.TestCase):
     def test_openrouter_request_and_standard_annotations(self, _which):
         lookup = ResearchLookup(force_backend="perplexity")
         response = Mock()
+        response.status_code = 200
         response.json.return_value = {
             "choices": [{"message": {"content": "A cited finding.", "annotations": [
                 {"type": "url_citation", "url_citation": {
