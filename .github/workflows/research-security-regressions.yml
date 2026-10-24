@@ -74,7 +74,7 @@ jobs:
           environment = {k: v for k, v in os.environ.items() if k.upper() in {
               "PATH", "HOME", "USERPROFILE", "SYSTEMROOT", "WINDIR", "COMSPEC",
               "PATHEXT", "TEMP", "TMP", "TMPDIR", "LOCALAPPDATA", "APPDATA",
-              "LANG", "LC_ALL"
+              "LANG", "LC_ALL", "UV_CACHE_DIR", "UV_PYTHON_INSTALL_DIR"
           }}
           environment["PYTHONDONTWRITEBYTECODE"] = "1"
           environment["PYTHONUTF8"] = "1"
