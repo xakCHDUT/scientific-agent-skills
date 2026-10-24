@@ -1,0 +1,90 @@
+name: Research Security Regressions
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "tests/**"
+      - ".github/workflows/research-security-regressions.yml"
+  push:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - "tests/**"
+      - ".github/workflows/research-security-regressions.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: research-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    name: ${{ matrix.skill }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        skill:
+          - research-lookup
+          - citation-management
+          - literature-review
+          - scientific-slides
+          - scientific-schematics
+          - latex-posters
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v8.0.0
+        with:
+          python-version: "3.13"
+      # No provider secrets or paid scanner are used by this workflow.
+      # Keep one skill per interpreter and use its declared dependencies.
+      - name: Run offline regressions
+        shell: python
+        env:
+          TEST_SKILL: ${{ matrix.skill }}
+        run: |
+          import os
+          import pathlib
+          import subprocess
+          import tomllib
+
+          skill = os.environ["TEST_SKILL"]
+          manifest = tomllib.loads(pathlib.Path("tests/skill-requirements.toml").read_text())
+          entry = manifest["skills"][skill]
+          command = ["uv", "run", "--no-project", "--python", "3.13",
+                     "--with", "pytest", "--with", "pytest-socket"]
+          for package in entry["packages"]:
+              command += ["--with", package]
+          command += ["python", "-m", "pytest", "tests/" + skill,
+                      "-q", "-ra", "--disable-socket", "--junitxml=results.xml"]
+          if os.name == "nt":
+              # POSIX permissions, Bash/Poppler shell fixtures and TeX preflight
+              # are tested on Linux; no production feature or Linux assertion
+              # is removed. Windows still runs every Python security regression.
+              command += ["-k", "not ReviewScriptTests and not TemplateCompilationTests "
+                          "and not test_the_bundled_example_is_executable_shell"]
+          environment = {k: v for k, v in os.environ.items() if k.upper() in {
+              "PATH", "HOME", "USERPROFILE", "SYSTEMROOT", "WINDIR", "COMSPEC",
+              "PATHEXT", "TEMP", "TMP", "TMPDIR", "LOCALAPPDATA", "APPDATA",
+              "LANG", "LC_ALL"
+          }}
+          environment["PYTHONDONTWRITEBYTECODE"] = "1"
+          environment["PYTHONUTF8"] = "1"
+          print("Command:", command, flush=True)
+          result = subprocess.run(command, env=environment)
+          raise SystemExit(result.returncode)
+      - name: Preserve test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-security-${{ matrix.skill }}-${{ matrix.os }}
+          path: results.xml
+          if-no-files-found: warn
