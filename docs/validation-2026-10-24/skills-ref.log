@@ -1,0 +1,531 @@
+skills/13c-metabolic-flux: exit 0
+Valid skill: skills/13c-metabolic-flux
+
+skills/adaptyv: exit 0
+Valid skill: skills/adaptyv
+
+skills/aeon: exit 0
+Valid skill: skills/aeon
+
+skills/alphagenome: exit 0
+Valid skill: skills/alphagenome
+
+skills/analytical-method-validation: exit 0
+Valid skill: skills/analytical-method-validation
+
+skills/anndata: exit 0
+Valid skill: skills/anndata
+
+skills/arbor: exit 0
+Valid skill: skills/arbor
+
+skills/arboreto: exit 0
+Valid skill: skills/arboreto
+
+skills/astropy: exit 0
+Valid skill: skills/astropy
+
+skills/autoskill: exit 0
+Valid skill: skills/autoskill
+
+skills/benchling-integration: exit 0
+Valid skill: skills/benchling-integration
+
+skills/bgpt-paper-search: exit 0
+Valid skill: skills/bgpt-paper-search
+
+skills/bids: exit 0
+Valid skill: skills/bids
+
+skills/biopython: exit 0
+Valid skill: skills/biopython
+
+skills/bioservices: exit 0
+Valid skill: skills/bioservices
+
+skills/bulk-rnaseq: exit 0
+Valid skill: skills/bulk-rnaseq
+
+skills/cantera: exit 0
+Valid skill: skills/cantera
+
+skills/cellprofiler: exit 0
+Valid skill: skills/cellprofiler
+
+skills/cellxgene-census: exit 0
+Valid skill: skills/cellxgene-census
+
+skills/cirq: exit 0
+Valid skill: skills/cirq
+
+skills/citation-management: exit 0
+Valid skill: skills/citation-management
+
+skills/clinical-decision-support: exit 0
+Valid skill: skills/clinical-decision-support
+
+skills/clinical-reports: exit 0
+Valid skill: skills/clinical-reports
+
+skills/cobrapy: exit 0
+Valid skill: skills/cobrapy
+
+skills/consciousness-council: exit 0
+Valid skill: skills/consciousness-council
+
+skills/dask: exit 0
+Valid skill: skills/dask
+
+skills/database-lookup: exit 0
+Valid skill: skills/database-lookup
+
+skills/datalad: exit 0
+Valid skill: skills/datalad
+
+skills/datamol: exit 0
+Valid skill: skills/datamol
+
+skills/deepchem: exit 0
+Valid skill: skills/deepchem
+
+skills/deepspot-m: exit 0
+Valid skill: skills/deepspot-m
+
+skills/deeptools: exit 0
+Valid skill: skills/deeptools
+
+skills/depmap: exit 0
+Valid skill: skills/depmap
+
+skills/dhdna-profiler: exit 0
+Valid skill: skills/dhdna-profiler
+
+skills/diffdock: exit 0
+Valid skill: skills/diffdock
+
+skills/dnanexus-integration: exit 0
+Valid skill: skills/dnanexus-integration
+
+skills/esm: exit 0
+Valid skill: skills/esm
+
+skills/etetoolkit: exit 0
+Valid skill: skills/etetoolkit
+
+skills/exa-search: exit 0
+Valid skill: skills/exa-search
+
+skills/experimental-design: exit 0
+Valid skill: skills/experimental-design
+
+skills/exploratory-data-analysis: exit 0
+Valid skill: skills/exploratory-data-analysis
+
+skills/fictiv: exit 0
+Valid skill: skills/fictiv
+
+skills/flowio: exit 0
+Valid skill: skills/flowio
+
+skills/flowkit: exit 0
+Valid skill: skills/flowkit
+
+skills/fluidsim: exit 0
+Valid skill: skills/fluidsim
+
+skills/folklore-variant-evidence: exit 0
+Valid skill: skills/folklore-variant-evidence
+
+skills/generate-image: exit 0
+Valid skill: skills/generate-image
+
+skills/geniml: exit 0
+Valid skill: skills/geniml
+
+skills/genomic-coordinates: exit 0
+Valid skill: skills/genomic-coordinates
+
+skills/genomic-intelligence: exit 0
+Valid skill: skills/genomic-intelligence
+
+skills/geomaster: exit 0
+Valid skill: skills/geomaster
+
+skills/geopandas: exit 0
+Valid skill: skills/geopandas
+
+skills/get-available-resources: exit 0
+Valid skill: skills/get-available-resources
+
+skills/gget: exit 0
+Valid skill: skills/gget
+
+skills/ginkgo-cloud-lab: exit 0
+Valid skill: skills/ginkgo-cloud-lab
+
+skills/glycoengineering: exit 0
+Valid skill: skills/glycoengineering
+
+skills/gtars: exit 0
+Valid skill: skills/gtars
+
+skills/histolab: exit 0
+Valid skill: skills/histolab
+
+skills/hugging-science: exit 0
+Valid skill: skills/hugging-science
+
+skills/hypogenic: exit 0
+Valid skill: skills/hypogenic
+
+skills/hypothesis-generation: exit 0
+Valid skill: skills/hypothesis-generation
+
+skills/imaging-data-commons: exit 0
+Valid skill: skills/imaging-data-commons
+
+skills/infographics: exit 0
+Valid skill: skills/infographics
+
+skills/iso-standards-readiness: exit 0
+Valid skill: skills/iso-standards-readiness
+
+skills/lab-hardware-cad: exit 0
+Valid skill: skills/lab-hardware-cad
+
+skills/labarchive-integration: exit 0
+Valid skill: skills/labarchive-integration
+
+skills/lamindb: exit 0
+Valid skill: skills/lamindb
+
+skills/latchbio-integration: exit 0
+Valid skill: skills/latchbio-integration
+
+skills/latex-posters: exit 0
+Valid skill: skills/latex-posters
+
+skills/liteparse: exit 0
+Valid skill: skills/liteparse
+
+skills/literature-review: exit 0
+Valid skill: skills/literature-review
+
+skills/mageck: exit 0
+Valid skill: skills/mageck
+
+skills/marine-carbonate-chemistry: exit 0
+Valid skill: skills/marine-carbonate-chemistry
+
+skills/markdown-mermaid-writing: exit 0
+Valid skill: skills/markdown-mermaid-writing
+
+skills/market-research-reports: exit 0
+Valid skill: skills/market-research-reports
+
+skills/markitdown: exit 0
+Valid skill: skills/markitdown
+
+skills/matchms: exit 0
+Valid skill: skills/matchms
+
+skills/matlab: exit 0
+Valid skill: skills/matlab
+
+skills/matplotlib: exit 0
+Valid skill: skills/matplotlib
+
+skills/medchem: exit 0
+Valid skill: skills/medchem
+
+skills/modal: exit 0
+Valid skill: skills/modal
+
+skills/molecular-dynamics: exit 0
+Valid skill: skills/molecular-dynamics
+
+skills/molfeat: exit 0
+Valid skill: skills/molfeat
+
+skills/ncats-arax: exit 0
+Valid skill: skills/ncats-arax
+
+skills/networkx: exit 0
+Valid skill: skills/networkx
+
+skills/neurokit2: exit 0
+Valid skill: skills/neurokit2
+
+skills/neuropixels-analysis: exit 0
+Valid skill: skills/neuropixels-analysis
+
+skills/nextflow: exit 0
+Valid skill: skills/nextflow
+
+skills/nmrglue: exit 0
+Valid skill: skills/nmrglue
+
+skills/nwb-conversion: exit 0
+Valid skill: skills/nwb-conversion
+
+skills/omero-integration: exit 0
+Valid skill: skills/omero-integration
+
+skills/onekgpd: exit 0
+Valid skill: skills/onekgpd
+
+skills/ontology-term-resolution: exit 0
+Valid skill: skills/ontology-term-resolution
+
+skills/open-notebook: exit 0
+Valid skill: skills/open-notebook
+
+skills/openpiv: exit 0
+Valid skill: skills/openpiv
+
+skills/opentrons-integration: exit 0
+Valid skill: skills/opentrons-integration
+
+skills/optimize-for-gpu: exit 0
+Valid skill: skills/optimize-for-gpu
+
+skills/pacsomatic: exit 0
+Valid skill: skills/pacsomatic
+
+skills/paper-lookup: exit 0
+Valid skill: skills/paper-lookup
+
+skills/paperclip: exit 0
+Valid skill: skills/paperclip
+
+skills/paperzilla: exit 0
+Valid skill: skills/paperzilla
+
+skills/parallel-web: exit 0
+Valid skill: skills/parallel-web
+
+skills/pathml: exit 0
+Valid skill: skills/pathml
+
+skills/pathogen-variant-surveillance: exit 0
+Valid skill: skills/pathogen-variant-surveillance
+
+skills/pathway-enrichment: exit 0
+Valid skill: skills/pathway-enrichment
+
+skills/peer-review: exit 0
+Valid skill: skills/peer-review
+
+skills/pennylane: exit 0
+Valid skill: skills/pennylane
+
+skills/phylogenetics: exit 0
+Valid skill: skills/phylogenetics
+
+skills/pi-agent: exit 0
+Valid skill: skills/pi-agent
+
+skills/pkpd-modeling: exit 0
+Valid skill: skills/pkpd-modeling
+
+skills/polars: exit 0
+Valid skill: skills/polars
+
+skills/polars-bio: exit 0
+Valid skill: skills/polars-bio
+
+skills/pptx-posters: exit 0
+Valid skill: skills/pptx-posters
+
+skills/primekg: exit 0
+Valid skill: skills/primekg
+
+skills/primer-design: exit 0
+Valid skill: skills/primer-design
+
+skills/protocolsio-integration: exit 0
+Valid skill: skills/protocolsio-integration
+
+skills/pufferlib: exit 0
+Valid skill: skills/pufferlib
+
+skills/pybamm: exit 0
+Valid skill: skills/pybamm
+
+skills/pycalphad: exit 0
+Valid skill: skills/pycalphad
+
+skills/pydeseq2: exit 0
+Valid skill: skills/pydeseq2
+
+skills/pydicom: exit 0
+Valid skill: skills/pydicom
+
+skills/pyhealth: exit 0
+Valid skill: skills/pyhealth
+
+skills/pylabrobot: exit 0
+Valid skill: skills/pylabrobot
+
+skills/pymatgen: exit 0
+Valid skill: skills/pymatgen
+
+skills/pymc: exit 0
+Valid skill: skills/pymc
+
+skills/pymoo: exit 0
+Valid skill: skills/pymoo
+
+skills/pyopenms: exit 0
+Valid skill: skills/pyopenms
+
+skills/pysam: exit 0
+Valid skill: skills/pysam
+
+skills/pytdc: exit 0
+Valid skill: skills/pytdc
+
+skills/pytorch-lightning: exit 0
+Valid skill: skills/pytorch-lightning
+
+skills/pyzotero: exit 0
+Valid skill: skills/pyzotero
+
+skills/qiime2-amplicon: exit 0
+Valid skill: skills/qiime2-amplicon
+
+skills/qiskit: exit 0
+Valid skill: skills/qiskit
+
+skills/qutip: exit 0
+Valid skill: skills/qutip
+
+skills/rdkit: exit 0
+Valid skill: skills/rdkit
+
+skills/relion: exit 0
+Valid skill: skills/relion
+
+skills/relsa-severity-assessment: exit 0
+Valid skill: skills/relsa-severity-assessment
+
+skills/research-grants: exit 0
+Valid skill: skills/research-grants
+
+skills/research-lookup: exit 0
+Valid skill: skills/research-lookup
+
+skills/rowan: exit 0
+Valid skill: skills/rowan
+
+skills/scanpy: exit 0
+Valid skill: skills/scanpy
+
+skills/scholar-evaluation: exit 0
+Valid skill: skills/scholar-evaluation
+
+skills/scientific-brainstorming: exit 0
+Valid skill: skills/scientific-brainstorming
+
+skills/scientific-critical-thinking: exit 0
+Valid skill: skills/scientific-critical-thinking
+
+skills/scientific-schematics: exit 0
+Valid skill: skills/scientific-schematics
+
+skills/scientific-slides: exit 0
+Valid skill: skills/scientific-slides
+
+skills/scientific-visualization: exit 0
+Valid skill: skills/scientific-visualization
+
+skills/scientific-writing: exit 0
+Valid skill: skills/scientific-writing
+
+skills/scikit-bio: exit 0
+Valid skill: skills/scikit-bio
+
+skills/scikit-learn: exit 0
+Valid skill: skills/scikit-learn
+
+skills/scikit-survival: exit 0
+Valid skill: skills/scikit-survival
+
+skills/scvelo: exit 0
+Valid skill: skills/scvelo
+
+skills/scvi-tools: exit 0
+Valid skill: skills/scvi-tools
+
+skills/seaborn: exit 0
+Valid skill: skills/seaborn
+
+skills/shap: exit 0
+Valid skill: skills/shap
+
+skills/simpy: exit 0
+Valid skill: skills/simpy
+
+skills/stable-baselines3: exit 0
+Valid skill: skills/stable-baselines3
+
+skills/statistical-analysis: exit 0
+Valid skill: skills/statistical-analysis
+
+skills/statistical-power: exit 0
+Valid skill: skills/statistical-power
+
+skills/statsmodels: exit 0
+Valid skill: skills/statsmodels
+
+skills/sympy: exit 0
+Valid skill: skills/sympy
+
+skills/tamarind: exit 0
+Valid skill: skills/tamarind
+
+skills/tellurium: exit 0
+Valid skill: skills/tellurium
+
+skills/tiledbvcf: exit 0
+Valid skill: skills/tiledbvcf
+
+skills/timesfm-forecasting: exit 0
+Valid skill: skills/timesfm-forecasting
+
+skills/torch-geometric: exit 0
+Valid skill: skills/torch-geometric
+
+skills/torchdrug: exit 0
+Valid skill: skills/torchdrug
+
+skills/transformers: exit 0
+Valid skill: skills/transformers
+
+skills/treatment-plans: exit 0
+Valid skill: skills/treatment-plans
+
+skills/umap-learn: exit 0
+Valid skill: skills/umap-learn
+
+skills/uncertainty-and-units: exit 0
+Valid skill: skills/uncertainty-and-units
+
+skills/usfiscaldata: exit 0
+Valid skill: skills/usfiscaldata
+
+skills/vaex: exit 0
+Valid skill: skills/vaex
+
+skills/venue-templates: exit 0
+Valid skill: skills/venue-templates
+
+skills/waypoint-bio: exit 0
+Valid skill: skills/waypoint-bio
+
+skills/what-if-oracle: exit 0
+Valid skill: skills/what-if-oracle
+
+skills/zarr-python: exit 0
+Valid skill: skills/zarr-python
+

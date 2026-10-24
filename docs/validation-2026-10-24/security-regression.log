@@ -1,0 +1,13 @@
+Credential-free environment; Python sockets and DNS blocked. Synthetic data only.
+
+Command: uv run --no-project --python 3.13 --with pytest --with requests python -m pytest tests/research-lookup/test_security.py -q -ra --junitxml=docs/validation-2026-10-24/security-research.xml
+....     [100%]
+4 passed, 64 subtests passed in 0.11s
+
+Command: uv run --no-project --python 3.13 --with pytest --with requests python -m pytest tests/citation-management/test_security.py tests/citation-management/test_security_boundaries.py -q -ra --junitxml=docs/validation-2026-10-24/security-citation.xml
+.......................                                                  [100%]
+23 passed in 0.13s
+
+Command: uv run --no-project --python 3.13 --with pytest --with requests python -m pytest tests/scientific-schematics/test_security_transport.py -q -ra --junitxml=docs/validation-2026-10-24/security-schematic.xml
+....                                                                     [100%]
+4 passed in 1.21s

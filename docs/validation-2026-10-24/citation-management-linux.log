@@ -1,0 +1,15 @@
+Command: uv run --no-project --python 3.13 --with 'pytest>=9.1.1' --with pytest-socket --with requests --with scholarly python -m pytest tests/citation-management -q -ra --disable-socket --junitxml=docs/validation-2026-10-24/citation-management-linux.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+......................................................................................................... [ 83%]
+.....................                                                    [100%]
+=============================== warnings summary ===============================
+../../../../root/.cache/uv/archive-v0/6tfp9V0iwT2rj7xd/lib/python3.13/site-packages/scholarly/_scholarly.py:312
+  /root/.cache/uv/archive-v0/6tfp9V0iwT2rj7xd/lib/python3.13/site-packages/scholarly/_scholarly.py:312: SyntaxWarning: invalid escape sequence '\d'
+    m = re.search("cites=[\d+,]*", object["citedby_url"])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+126 passed, 1 warning, 39 subtests passed in 2.55s
+
+
+Validation recorder: process exit 0; JUnit {"tests": "165", "failures": "0", "errors": "0", "skipped": "0", "time": "2.555"}

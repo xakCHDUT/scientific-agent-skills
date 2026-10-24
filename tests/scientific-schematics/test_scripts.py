@@ -8,6 +8,7 @@ the document-type quality thresholds the CLI advertises.
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 import unittest
@@ -59,6 +60,7 @@ class DocumentTypeTests(unittest.TestCase):
 
 
 class ExampleScriptTests(unittest.TestCase):
+    @unittest.skipIf(os.name == "nt", "POSIX Bash/permission test runs on the Linux CI leg")
     def test_the_bundled_example_is_executable_shell(self) -> None:
         example = SCRIPTS / "example_usage.sh"
         self.assertTrue(example.is_file())
@@ -73,6 +75,7 @@ class ExampleScriptTests(unittest.TestCase):
 
     def test_the_example_only_invokes_scripts_the_skill_ships(self) -> None:
         text = (SCRIPTS / "example_usage.sh").read_text(encoding="utf-8")
+        self.assertTrue(text.startswith("#!"), "no shebang")
         for token in text.split():
             if token.endswith(".py"):
                 with self.subTest(script=token):

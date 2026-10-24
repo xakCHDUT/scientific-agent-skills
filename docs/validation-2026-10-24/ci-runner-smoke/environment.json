@@ -1,0 +1,26 @@
+{
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "bootstrap_python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "head_sha": "d6f90c1453817f5de1b21d4d8c6deaaf82966a50",
+  "command": [
+    "uv",
+    "run",
+    "--no-project",
+    "--python",
+    "3.13",
+    "--with",
+    "pytest>=9.1.1",
+    "--with",
+    "pytest-socket",
+    "--with",
+    "requests",
+    "python",
+    "-m",
+    "pytest",
+    "tests/research-lookup",
+    "-q",
+    "-ra",
+    "--disable-socket",
+    "--junitxml=test-results/results.xml"
+  ]
+}

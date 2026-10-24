@@ -35,6 +35,7 @@ CliHelpTests = skill_contract.cli.help_test_case(SKILL_ROOT)
 REVIEW_SCRIPT = SCRIPTS / "review_poster.sh"
 
 
+@unittest.skipIf(os.name == "nt", "POSIX Bash/permission tests run on the Linux CI leg")
 class ReviewScriptTests(unittest.TestCase):
     def setUp(self) -> None:
         self.text = REVIEW_SCRIPT.read_text(encoding="utf-8")
@@ -158,8 +159,15 @@ class ReviewScriptTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("Unrecognized pdfimages output", result.stdout)
 
+class ReviewAssetTests(unittest.TestCase):
+    """Keep script content checks active even on native Windows."""
+
+    def test_review_script_is_shipped_with_a_shebang(self) -> None:
+        self.assertTrue(REVIEW_SCRIPT.is_file())
+        self.assertTrue(REVIEW_SCRIPT.read_text(encoding="utf-8").startswith("#!"))
+
     def test_every_python_script_it_invokes_is_shipped(self) -> None:
-        for token in self.text.split():
+        for token in REVIEW_SCRIPT.read_text(encoding="utf-8").split():
             if token.endswith(".py"):
                 with self.subTest(script=token):
                     self.assertTrue(
@@ -176,6 +184,7 @@ class AssetTests(unittest.TestCase):
         self.assertEqual(problems, [])
 
 
+@unittest.skipIf(os.name == "nt", "TeX/Poppler preflight calls the POSIX Bash helper; covered on Linux")
 class TemplateCompilationTests(unittest.TestCase):
     """Real TeX/Poppler regression checks when system dependencies are present."""
 

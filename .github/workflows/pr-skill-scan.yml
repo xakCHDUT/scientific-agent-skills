@@ -19,8 +19,8 @@ concurrency:
 
 jobs:
   scan-unavailable:
-    name: Security scan skipped (restricted PR)
-    if: github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]'
+    name: Security scan not run (restricted PR or not opted in)
+    if: github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]' || vars.ENABLE_LLM_SECURITY_SCAN != 'true'
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -29,9 +29,10 @@ jobs:
           cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
           ## Skill security scan skipped
 
-          Fork and Dependabot pull requests do not receive the Actions secret used
-          by this scanner and have a read-only token. No security scan ran, and no
-          PR comment was attempted. This is not a passing security assessment.
+          This scanner requires the repository variable ENABLE_LLM_SECURITY_SCAN
+          to equal `true`, a same-repository PR, and a non-Dependabot actor.
+          Without all three, no LLM credential is injected, no security scan runs,
+          and no PR comment is attempted. This is not a passing security assessment.
 
           A maintainer can review the changes and run `scan_pr_skills.py` in a
           trusted environment before merging.
@@ -39,7 +40,7 @@ jobs:
 
   scan:
     name: Scan changed skills
-    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' && vars.ENABLE_LLM_SECURITY_SCAN == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:

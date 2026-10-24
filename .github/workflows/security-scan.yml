@@ -14,7 +14,22 @@ permissions:
   contents: write
 
 jobs:
+  scan-unavailable:
+    name: Security scan not run (not opted in)
+    if: vars.ENABLE_LLM_SECURITY_SCAN != 'true'
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Explain why the security scan did not run
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          The paid LLM scan requires ENABLE_LLM_SECURITY_SCAN=`true` as a repository
+          variable. No LLM credential was injected and no scan ran. This is not a
+          passing security assessment. Offline regression tests remain independent.
+          EOF
+
   scan:
+    if: vars.ENABLE_LLM_SECURITY_SCAN == 'true'
     runs-on: ubuntu-latest
     # Scans run concurrently and reuse findings for unchanged skills, so a
     # typical incremental run is minutes. The headroom is for a full rescan

@@ -1,0 +1,237 @@
+{
+  "commit": "9a007bb731bde2b22eb5f5b6156f2e2f51f9cbce",
+  "timestamp_utc": "2026-10-24T05:02:24.205391+00:00",
+  "system": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python_target": "3.13",
+  "network_guard": "socket.connect/connect_ex/create_connection blocked in test Python processes via temporary sitecustomize; dependency installation separate before test; real credentials removed from test environment",
+  "results": [
+    {
+      "suite": "_meta",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "jsonschema",
+        "python",
+        "-m",
+        "pytest",
+        "tests/_meta",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/_meta-linux.xml"
+      ],
+      "junit": {
+        "tests": "4242",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "5.104"
+      }
+    },
+    {
+      "suite": "research-lookup",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "python",
+        "-m",
+        "pytest",
+        "tests/research-lookup",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/research-lookup-linux.xml"
+      ],
+      "junit": {
+        "tests": "97",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "0.210"
+      }
+    },
+    {
+      "suite": "citation-management",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "--with",
+        "scholarly",
+        "python",
+        "-m",
+        "pytest",
+        "tests/citation-management",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/citation-management-linux.xml"
+      ],
+      "junit": {
+        "tests": "152",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "2.806"
+      }
+    },
+    {
+      "suite": "literature-review",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "--with",
+        "python-dotenv",
+        "python",
+        "-m",
+        "pytest",
+        "tests/literature-review",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/literature-review-linux.xml"
+      ],
+      "junit": {
+        "tests": "126",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "1.164"
+      }
+    },
+    {
+      "suite": "scientific-slides",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "pymupdf",
+        "--with",
+        "python-pptx",
+        "--with",
+        "pillow",
+        "--with",
+        "matplotlib",
+        "--with",
+        "seaborn",
+        "--with",
+        "numpy",
+        "--with",
+        "pypdf",
+        "--with",
+        "requests",
+        "--with",
+        "python-dotenv",
+        "python",
+        "-m",
+        "pytest",
+        "tests/scientific-slides",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/scientific-slides-linux.xml"
+      ],
+      "junit": {
+        "tests": "265",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "6.387"
+      }
+    },
+    {
+      "suite": "scientific-schematics",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "--with",
+        "python-dotenv",
+        "python",
+        "-m",
+        "pytest",
+        "tests/scientific-schematics",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/scientific-schematics-linux.xml"
+      ],
+      "junit": {
+        "tests": "104",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "0.555"
+      }
+    },
+    {
+      "suite": "latex-posters",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "--with",
+        "python-dotenv",
+        "python",
+        "-m",
+        "pytest",
+        "tests/latex-posters",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/latex-posters-linux.xml"
+      ],
+      "junit": {
+        "tests": "80",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "1",
+        "time": "5.516"
+      }
+    }
+  ],
+  "phase": "Original PR test suites before acceptance additions"
+}

@@ -1,0 +1,8 @@
+Command: uv run --no-project --python 3.13 --with 'pytest>=9.1.1' --with pytest-socket --with pymupdf --with python-pptx --with pillow --with matplotlib --with seaborn --with numpy --with pypdf --with requests --with python-dotenv python -m pytest tests/scientific-slides -q -ra --disable-socket --junitxml=docs/validation-2026-10-24/scientific-slides-linux.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+............................................ [ 29%]
+........................................................................ [ 77%]
+...............................
+
+Validation recorder: process exit 0; JUnit {"tests": "265", "failures": "0", "errors": "0", "skipped": "0", "time": "6.430"}

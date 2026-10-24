@@ -1,0 +1,6 @@
+Command: uv run --no-project --python 3.13 --with 'pytest>=9.1.1' --with pytest-socket --with requests --with python-dotenv python -m pytest tests/literature-review -q -ra --disable-socket --junitxml=docs/validation-2026-10-24/literature-review-linux.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+..............
+
+Validation recorder: process exit 0; JUnit {"tests": "126", "failures": "0", "errors": "0", "skipped": "0", "time": "1.237"}

@@ -1,0 +1,5 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/hypothesis-generation -q -ra --junitxml=docs/validation-2026-10-24/stdlib/hypothesis-generation.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+...............................                            [100%]
+31 passed, 14 subtests passed in 0.45s

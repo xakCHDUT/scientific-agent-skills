@@ -1,0 +1,5 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/paper-lookup -q -ra --junitxml=docs/validation-2026-10-24/stdlib/paper-lookup.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+...........................................................................................                                                             [100%]
+91 passed, 65 subtests passed in 1.87s

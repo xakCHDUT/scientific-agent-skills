@@ -1,0 +1,5 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/clinical-reports -q -ra --junitxml=docs/validation-2026-10-24/stdlib/clinical-reports.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+............................                         [100%]
+28 passed, 20 subtests passed in 0.38s

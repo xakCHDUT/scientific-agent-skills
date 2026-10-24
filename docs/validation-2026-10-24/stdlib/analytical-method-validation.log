@@ -1,0 +1,6 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/analytical-method-validation -q -ra --junitxml=docs/validation-2026-10-24/stdlib/analytical-method-validation.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+........................................................................ [ 51%]
+....................................................................                                                              [100%]
+140 passed, 15 subtests passed in 4.89s

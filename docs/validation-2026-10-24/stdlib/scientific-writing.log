@@ -1,0 +1,4 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/scientific-writing -q -ra --junitxml=docs/validation-2026-10-24/stdlib/scientific-writing.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+..............

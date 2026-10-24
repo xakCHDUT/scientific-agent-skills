@@ -1,0 +1,76 @@
+{
+  "source_commit_before_additional_tests": "9a007bb731bde2b22eb5f5b6156f2e2f51f9cbce",
+  "timestamp_utc": "2026-10-24T05:03:47.753093+00:00",
+  "real_api_credentials_used": false,
+  "network_calls_permitted": false,
+  "private_research_data_used": false,
+  "results": [
+    {
+      "name": "research",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "python",
+        "-m",
+        "pytest",
+        "tests/research-lookup/test_security.py",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/security-research.xml"
+      ]
+    },
+    {
+      "name": "citation",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "python",
+        "-m",
+        "pytest",
+        "tests/citation-management/test_security.py",
+        "tests/citation-management/test_security_boundaries.py",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/security-citation.xml"
+      ]
+    },
+    {
+      "name": "schematic",
+      "exit_code": 0,
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--python",
+        "3.13",
+        "--with",
+        "pytest",
+        "--with",
+        "requests",
+        "python",
+        "-m",
+        "pytest",
+        "tests/scientific-schematics/test_security_transport.py",
+        "-q",
+        "-ra",
+        "--junitxml=docs/validation-2026-10-24/security-schematic.xml"
+      ]
+    }
+  ]
+}
