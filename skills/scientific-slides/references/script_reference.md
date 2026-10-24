@@ -34,6 +34,7 @@ images to OpenRouter and the selected model provider. Prefer the environment or
   discover image capabilities; `GET /api/v1/models` verifies the review model's image
   input and text output. These public catalog responses have no page loop here.
 - The helper makes one generation call and one review per draft, at most two drafts.
+  API redirects are rejected without forwarding the prompt, images, or credentials.
   A generation failure stops without replay; a failed refinement keeps the earlier draft.
   `<stem>_review_log.json` separates `success` (image saved), `quality_met`,
   `final_reviewed`, model IDs, and `termination_reason`. Missing reviews never invent scores.

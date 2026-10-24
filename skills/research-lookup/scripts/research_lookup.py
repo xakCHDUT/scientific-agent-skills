@@ -36,6 +36,18 @@ DEFAULT_TARGET_REFERENCES = 60
 DEFAULT_MAX_RESULTS = 20
 DEFAULT_EXTRACT_BATCH_SIZE = 10
 
+def _safe_error(value: object) -> str:
+    """Remove configured credentials from diagnostics, including provider echoes."""
+    detail = str(value)
+    keys = {
+        os.getenv(name)
+        for name in ("PARALLEL_API_KEY", "OPENROUTER_API_KEY")
+    }
+    for key in sorted((key for key in keys if key), key=len, reverse=True):
+        detail = detail.replace(key, "[redacted]")
+    return detail
+
+
 ACADEMIC_DOMAINS = (
     "pubmed.ncbi.nlm.nih.gov",
     "pmc.ncbi.nlm.nih.gov",
@@ -285,7 +297,7 @@ class ResearchLookup:
             ) from exc
 
         if completed.returncode != 0:
-            detail = completed.stderr.strip() or completed.stdout.strip()
+            detail = _safe_error(completed.stderr.strip() or completed.stdout.strip())
             raise RuntimeError(
                 f"parallel-cli exited with status {completed.returncode}: {detail}"
             )
@@ -298,7 +310,7 @@ class ResearchLookup:
         if not isinstance(payload, dict):
             raise RuntimeError("parallel-cli returned a non-object JSON response.")
         if payload.get("type") == "error" or payload.get("error"):
-            raise RuntimeError(f"parallel-cli returned an error: {payload.get('error')}")
+            raise RuntimeError(f"parallel-cli returned an error: {_safe_error(payload.get('error'))}")
         return payload
 
     @staticmethod
@@ -432,7 +444,7 @@ class ResearchLookup:
                         "timestamp": timestamp,
                         "urls": urls,
                         "status": "error",
-                        "error": str(exc),
+                        "error": _safe_error(exc),
                     }
                 )
                 continue
@@ -501,7 +513,7 @@ class ResearchLookup:
                         apply_after_date=facet != "seminal",
                     )
                 except RuntimeError as exc:
-                    errors.append(f"{facet}: {exc}")
+                    errors.append(f"{facet}: {_safe_error(exc)}")
                     ledger.append(
                         {
                             "capability": "search",
@@ -509,7 +521,7 @@ class ResearchLookup:
                             "objective": objective,
                             "timestamp": datetime.now(timezone.utc).isoformat(),
                             "status": "error",
-                            "error": str(exc),
+                            "error": _safe_error(exc),
                         }
                     )
                     continue
@@ -538,7 +550,7 @@ class ResearchLookup:
                     ledger.append(entry)
                     sources.extend(general_sources)
                 except RuntimeError as exc:
-                    errors.append(f"general-companion: {exc}")
+                    errors.append(f"general-companion: {_safe_error(exc)}")
                     ledger.append(
                         {
                             "capability": "search",
@@ -546,7 +558,7 @@ class ResearchLookup:
                             "objective": objective,
                             "timestamp": datetime.now(timezone.utc).isoformat(),
                             "status": "error",
-                            "error": str(exc),
+                            "error": _safe_error(exc),
                         }
                     )
         else:
@@ -771,7 +783,13 @@ class ResearchLookup:
             },
             json=payload,
             timeout=self.research_timeout,
+            allow_redirects=False,
         )
+        if 300 <= response.status_code < 400:
+            raise RuntimeError(
+                f"Parallel Chat redirect refused (HTTP {response.status_code}); "
+                "credentials and manuscript context were not forwarded."
+            )
         response.raise_for_status()
         response_payload = response.json()
         choices = response_payload.get("choices") or []
@@ -842,7 +860,13 @@ class ResearchLookup:
             },
             json=data,
             timeout=90,
+            allow_redirects=False,
         )
+        if 300 <= response.status_code < 400:
+            raise RuntimeError(
+                f"OpenRouter redirect refused (HTTP {response.status_code}); "
+                "credentials and manuscript context were not forwarded."
+            )
         response.raise_for_status()
         payload = response.json()
         choices = payload.get("choices") or []
@@ -961,7 +985,7 @@ class ResearchLookup:
         return {
             "success": False,
             "query": query,
-            "error": str(exc),
+            "error": _safe_error(exc),
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "backend": backend,
             "model": "unknown",
@@ -989,13 +1013,13 @@ class ResearchLookup:
                 and self.perplexity_available
             ):
                 print(
-                    f"[Research] Parallel failed; explicit Perplexity fallback: {exc}",
+                    f"[Research] Parallel failed; explicit Perplexity fallback: {_safe_error(exc)}",
                     file=sys.stderr,
                 )
                 try:
                     result = self._perplexity_lookup(query)
                     result["fallback_from"] = backend
-                    result["fallback_reason"] = str(exc)
+                    result["fallback_reason"] = _safe_error(exc)
                     return result
                 except Exception as fallback_exc:
                     return self._failure_result(
@@ -1214,7 +1238,7 @@ def main() -> int:
             manuscript_context=context,
         )
     except Exception as exc:
-        print(f"Error: {exc}", file=sys.stderr)
+        print(f"Error: {_safe_error(exc)}", file=sys.stderr)
         return 1
 
     queries = args.batch or [args.query]

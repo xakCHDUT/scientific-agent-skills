@@ -1,0 +1,13 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/ontology-term-resolution -q -ra --junitxml=docs/validation-2026-10-24/stdlib/ontology-term-resolution.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+........................................................................ [ 63%]
+...................................ssssss.                      [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/ontology-term-resolution/test_scripts.py:952: set OLS_LIVE_TESTS=1 to run tests that call EBI OLS
+SKIPPED [1] tests/ontology-term-resolution/test_scripts.py:973: set OLS_LIVE_TESTS=1 to run tests that call EBI OLS
+SKIPPED [1] tests/ontology-term-resolution/test_scripts.py:958: set OLS_LIVE_TESTS=1 to run tests that call EBI OLS
+SKIPPED [1] tests/ontology-term-resolution/test_scripts.py:979: set OLS_LIVE_TESTS=1 to run tests that call EBI OLS
+SKIPPED [1] tests/ontology-term-resolution/test_scripts.py:965: set OLS_LIVE_TESTS=1 to run tests that call EBI OLS
+SKIPPED [1] tests/ontology-term-resolution/test_scripts.py:983: set OLS_LIVE_TESTS=1 to run tests that call EBI OLS
+108 passed, 6 skipped, 9 subtests passed in 0.44s

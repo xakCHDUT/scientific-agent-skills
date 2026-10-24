@@ -1,0 +1,716 @@
+{
+  "validator_commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+  "python": "3.13.16 (main, Oct 14 2026, 01:04:01) [Clang 23.1.3 ]",
+  "count": 177,
+  "failed": [],
+  "results": [
+    {
+      "skill": "13c-metabolic-flux",
+      "exit_code": 0
+    },
+    {
+      "skill": "adaptyv",
+      "exit_code": 0
+    },
+    {
+      "skill": "aeon",
+      "exit_code": 0
+    },
+    {
+      "skill": "alphagenome",
+      "exit_code": 0
+    },
+    {
+      "skill": "analytical-method-validation",
+      "exit_code": 0
+    },
+    {
+      "skill": "anndata",
+      "exit_code": 0
+    },
+    {
+      "skill": "arbor",
+      "exit_code": 0
+    },
+    {
+      "skill": "arboreto",
+      "exit_code": 0
+    },
+    {
+      "skill": "astropy",
+      "exit_code": 0
+    },
+    {
+      "skill": "autoskill",
+      "exit_code": 0
+    },
+    {
+      "skill": "benchling-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "bgpt-paper-search",
+      "exit_code": 0
+    },
+    {
+      "skill": "bids",
+      "exit_code": 0
+    },
+    {
+      "skill": "biopython",
+      "exit_code": 0
+    },
+    {
+      "skill": "bioservices",
+      "exit_code": 0
+    },
+    {
+      "skill": "bulk-rnaseq",
+      "exit_code": 0
+    },
+    {
+      "skill": "cantera",
+      "exit_code": 0
+    },
+    {
+      "skill": "cellprofiler",
+      "exit_code": 0
+    },
+    {
+      "skill": "cellxgene-census",
+      "exit_code": 0
+    },
+    {
+      "skill": "cirq",
+      "exit_code": 0
+    },
+    {
+      "skill": "citation-management",
+      "exit_code": 0
+    },
+    {
+      "skill": "clinical-decision-support",
+      "exit_code": 0
+    },
+    {
+      "skill": "clinical-reports",
+      "exit_code": 0
+    },
+    {
+      "skill": "cobrapy",
+      "exit_code": 0
+    },
+    {
+      "skill": "consciousness-council",
+      "exit_code": 0
+    },
+    {
+      "skill": "dask",
+      "exit_code": 0
+    },
+    {
+      "skill": "database-lookup",
+      "exit_code": 0
+    },
+    {
+      "skill": "datalad",
+      "exit_code": 0
+    },
+    {
+      "skill": "datamol",
+      "exit_code": 0
+    },
+    {
+      "skill": "deepchem",
+      "exit_code": 0
+    },
+    {
+      "skill": "deepspot-m",
+      "exit_code": 0
+    },
+    {
+      "skill": "deeptools",
+      "exit_code": 0
+    },
+    {
+      "skill": "depmap",
+      "exit_code": 0
+    },
+    {
+      "skill": "dhdna-profiler",
+      "exit_code": 0
+    },
+    {
+      "skill": "diffdock",
+      "exit_code": 0
+    },
+    {
+      "skill": "dnanexus-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "esm",
+      "exit_code": 0
+    },
+    {
+      "skill": "etetoolkit",
+      "exit_code": 0
+    },
+    {
+      "skill": "exa-search",
+      "exit_code": 0
+    },
+    {
+      "skill": "experimental-design",
+      "exit_code": 0
+    },
+    {
+      "skill": "exploratory-data-analysis",
+      "exit_code": 0
+    },
+    {
+      "skill": "fictiv",
+      "exit_code": 0
+    },
+    {
+      "skill": "flowio",
+      "exit_code": 0
+    },
+    {
+      "skill": "flowkit",
+      "exit_code": 0
+    },
+    {
+      "skill": "fluidsim",
+      "exit_code": 0
+    },
+    {
+      "skill": "folklore-variant-evidence",
+      "exit_code": 0
+    },
+    {
+      "skill": "generate-image",
+      "exit_code": 0
+    },
+    {
+      "skill": "geniml",
+      "exit_code": 0
+    },
+    {
+      "skill": "genomic-coordinates",
+      "exit_code": 0
+    },
+    {
+      "skill": "genomic-intelligence",
+      "exit_code": 0
+    },
+    {
+      "skill": "geomaster",
+      "exit_code": 0
+    },
+    {
+      "skill": "geopandas",
+      "exit_code": 0
+    },
+    {
+      "skill": "get-available-resources",
+      "exit_code": 0
+    },
+    {
+      "skill": "gget",
+      "exit_code": 0
+    },
+    {
+      "skill": "ginkgo-cloud-lab",
+      "exit_code": 0
+    },
+    {
+      "skill": "glycoengineering",
+      "exit_code": 0
+    },
+    {
+      "skill": "gtars",
+      "exit_code": 0
+    },
+    {
+      "skill": "histolab",
+      "exit_code": 0
+    },
+    {
+      "skill": "hugging-science",
+      "exit_code": 0
+    },
+    {
+      "skill": "hypogenic",
+      "exit_code": 0
+    },
+    {
+      "skill": "hypothesis-generation",
+      "exit_code": 0
+    },
+    {
+      "skill": "imaging-data-commons",
+      "exit_code": 0
+    },
+    {
+      "skill": "infographics",
+      "exit_code": 0
+    },
+    {
+      "skill": "iso-standards-readiness",
+      "exit_code": 0
+    },
+    {
+      "skill": "lab-hardware-cad",
+      "exit_code": 0
+    },
+    {
+      "skill": "labarchive-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "lamindb",
+      "exit_code": 0
+    },
+    {
+      "skill": "latchbio-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "latex-posters",
+      "exit_code": 0
+    },
+    {
+      "skill": "liteparse",
+      "exit_code": 0
+    },
+    {
+      "skill": "literature-review",
+      "exit_code": 0
+    },
+    {
+      "skill": "mageck",
+      "exit_code": 0
+    },
+    {
+      "skill": "marine-carbonate-chemistry",
+      "exit_code": 0
+    },
+    {
+      "skill": "markdown-mermaid-writing",
+      "exit_code": 0
+    },
+    {
+      "skill": "market-research-reports",
+      "exit_code": 0
+    },
+    {
+      "skill": "markitdown",
+      "exit_code": 0
+    },
+    {
+      "skill": "matchms",
+      "exit_code": 0
+    },
+    {
+      "skill": "matlab",
+      "exit_code": 0
+    },
+    {
+      "skill": "matplotlib",
+      "exit_code": 0
+    },
+    {
+      "skill": "medchem",
+      "exit_code": 0
+    },
+    {
+      "skill": "modal",
+      "exit_code": 0
+    },
+    {
+      "skill": "molecular-dynamics",
+      "exit_code": 0
+    },
+    {
+      "skill": "molfeat",
+      "exit_code": 0
+    },
+    {
+      "skill": "ncats-arax",
+      "exit_code": 0
+    },
+    {
+      "skill": "networkx",
+      "exit_code": 0
+    },
+    {
+      "skill": "neurokit2",
+      "exit_code": 0
+    },
+    {
+      "skill": "neuropixels-analysis",
+      "exit_code": 0
+    },
+    {
+      "skill": "nextflow",
+      "exit_code": 0
+    },
+    {
+      "skill": "nmrglue",
+      "exit_code": 0
+    },
+    {
+      "skill": "nwb-conversion",
+      "exit_code": 0
+    },
+    {
+      "skill": "omero-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "onekgpd",
+      "exit_code": 0
+    },
+    {
+      "skill": "ontology-term-resolution",
+      "exit_code": 0
+    },
+    {
+      "skill": "open-notebook",
+      "exit_code": 0
+    },
+    {
+      "skill": "openpiv",
+      "exit_code": 0
+    },
+    {
+      "skill": "opentrons-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "optimize-for-gpu",
+      "exit_code": 0
+    },
+    {
+      "skill": "pacsomatic",
+      "exit_code": 0
+    },
+    {
+      "skill": "paper-lookup",
+      "exit_code": 0
+    },
+    {
+      "skill": "paperclip",
+      "exit_code": 0
+    },
+    {
+      "skill": "paperzilla",
+      "exit_code": 0
+    },
+    {
+      "skill": "parallel-web",
+      "exit_code": 0
+    },
+    {
+      "skill": "pathml",
+      "exit_code": 0
+    },
+    {
+      "skill": "pathogen-variant-surveillance",
+      "exit_code": 0
+    },
+    {
+      "skill": "pathway-enrichment",
+      "exit_code": 0
+    },
+    {
+      "skill": "peer-review",
+      "exit_code": 0
+    },
+    {
+      "skill": "pennylane",
+      "exit_code": 0
+    },
+    {
+      "skill": "phylogenetics",
+      "exit_code": 0
+    },
+    {
+      "skill": "pi-agent",
+      "exit_code": 0
+    },
+    {
+      "skill": "pkpd-modeling",
+      "exit_code": 0
+    },
+    {
+      "skill": "polars",
+      "exit_code": 0
+    },
+    {
+      "skill": "polars-bio",
+      "exit_code": 0
+    },
+    {
+      "skill": "pptx-posters",
+      "exit_code": 0
+    },
+    {
+      "skill": "primekg",
+      "exit_code": 0
+    },
+    {
+      "skill": "primer-design",
+      "exit_code": 0
+    },
+    {
+      "skill": "protocolsio-integration",
+      "exit_code": 0
+    },
+    {
+      "skill": "pufferlib",
+      "exit_code": 0
+    },
+    {
+      "skill": "pybamm",
+      "exit_code": 0
+    },
+    {
+      "skill": "pycalphad",
+      "exit_code": 0
+    },
+    {
+      "skill": "pydeseq2",
+      "exit_code": 0
+    },
+    {
+      "skill": "pydicom",
+      "exit_code": 0
+    },
+    {
+      "skill": "pyhealth",
+      "exit_code": 0
+    },
+    {
+      "skill": "pylabrobot",
+      "exit_code": 0
+    },
+    {
+      "skill": "pymatgen",
+      "exit_code": 0
+    },
+    {
+      "skill": "pymc",
+      "exit_code": 0
+    },
+    {
+      "skill": "pymoo",
+      "exit_code": 0
+    },
+    {
+      "skill": "pyopenms",
+      "exit_code": 0
+    },
+    {
+      "skill": "pysam",
+      "exit_code": 0
+    },
+    {
+      "skill": "pytdc",
+      "exit_code": 0
+    },
+    {
+      "skill": "pytorch-lightning",
+      "exit_code": 0
+    },
+    {
+      "skill": "pyzotero",
+      "exit_code": 0
+    },
+    {
+      "skill": "qiime2-amplicon",
+      "exit_code": 0
+    },
+    {
+      "skill": "qiskit",
+      "exit_code": 0
+    },
+    {
+      "skill": "qutip",
+      "exit_code": 0
+    },
+    {
+      "skill": "rdkit",
+      "exit_code": 0
+    },
+    {
+      "skill": "relion",
+      "exit_code": 0
+    },
+    {
+      "skill": "relsa-severity-assessment",
+      "exit_code": 0
+    },
+    {
+      "skill": "research-grants",
+      "exit_code": 0
+    },
+    {
+      "skill": "research-lookup",
+      "exit_code": 0
+    },
+    {
+      "skill": "rowan",
+      "exit_code": 0
+    },
+    {
+      "skill": "scanpy",
+      "exit_code": 0
+    },
+    {
+      "skill": "scholar-evaluation",
+      "exit_code": 0
+    },
+    {
+      "skill": "scientific-brainstorming",
+      "exit_code": 0
+    },
+    {
+      "skill": "scientific-critical-thinking",
+      "exit_code": 0
+    },
+    {
+      "skill": "scientific-schematics",
+      "exit_code": 0
+    },
+    {
+      "skill": "scientific-slides",
+      "exit_code": 0
+    },
+    {
+      "skill": "scientific-visualization",
+      "exit_code": 0
+    },
+    {
+      "skill": "scientific-writing",
+      "exit_code": 0
+    },
+    {
+      "skill": "scikit-bio",
+      "exit_code": 0
+    },
+    {
+      "skill": "scikit-learn",
+      "exit_code": 0
+    },
+    {
+      "skill": "scikit-survival",
+      "exit_code": 0
+    },
+    {
+      "skill": "scvelo",
+      "exit_code": 0
+    },
+    {
+      "skill": "scvi-tools",
+      "exit_code": 0
+    },
+    {
+      "skill": "seaborn",
+      "exit_code": 0
+    },
+    {
+      "skill": "shap",
+      "exit_code": 0
+    },
+    {
+      "skill": "simpy",
+      "exit_code": 0
+    },
+    {
+      "skill": "stable-baselines3",
+      "exit_code": 0
+    },
+    {
+      "skill": "statistical-analysis",
+      "exit_code": 0
+    },
+    {
+      "skill": "statistical-power",
+      "exit_code": 0
+    },
+    {
+      "skill": "statsmodels",
+      "exit_code": 0
+    },
+    {
+      "skill": "sympy",
+      "exit_code": 0
+    },
+    {
+      "skill": "tamarind",
+      "exit_code": 0
+    },
+    {
+      "skill": "tellurium",
+      "exit_code": 0
+    },
+    {
+      "skill": "tiledbvcf",
+      "exit_code": 0
+    },
+    {
+      "skill": "timesfm-forecasting",
+      "exit_code": 0
+    },
+    {
+      "skill": "torch-geometric",
+      "exit_code": 0
+    },
+    {
+      "skill": "torchdrug",
+      "exit_code": 0
+    },
+    {
+      "skill": "transformers",
+      "exit_code": 0
+    },
+    {
+      "skill": "treatment-plans",
+      "exit_code": 0
+    },
+    {
+      "skill": "umap-learn",
+      "exit_code": 0
+    },
+    {
+      "skill": "uncertainty-and-units",
+      "exit_code": 0
+    },
+    {
+      "skill": "usfiscaldata",
+      "exit_code": 0
+    },
+    {
+      "skill": "vaex",
+      "exit_code": 0
+    },
+    {
+      "skill": "venue-templates",
+      "exit_code": 0
+    },
+    {
+      "skill": "waypoint-bio",
+      "exit_code": 0
+    },
+    {
+      "skill": "what-if-oracle",
+      "exit_code": 0
+    },
+    {
+      "skill": "zarr-python",
+      "exit_code": 0
+    }
+  ]
+}

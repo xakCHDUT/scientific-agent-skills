@@ -1,0 +1,7 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/genomic-coordinates -q -ra --junitxml=docs/validation-2026-10-24/stdlib/genomic-coordinates.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+.................................................... [ 49%]
+............................................... [ 93%]
+.......                               [100%]
+106 passed, 80 subtests passed in 0.33s

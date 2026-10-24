@@ -1,0 +1,117 @@
+name: Research Security Regressions
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "tests/**"
+      - ".github/workflows/research-security-regressions.yml"
+  push:
+    branches: [main]
+    paths:
+      - "skills/**"
+      - "tests/**"
+      - ".github/workflows/research-security-regressions.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: research-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    name: ${{ matrix.skill }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        skill:
+          - research-lookup
+          - citation-management
+          - literature-review
+          - scientific-slides
+          - scientific-schematics
+          - latex-posters
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v8.0.0
+        with:
+          python-version: "3.13"
+          enable-cache: true
+          cache-dependency-glob: tests/skill-requirements.toml
+      - name: Install Linux poster render dependencies
+        if: runner.os == 'Linux' && matrix.skill == 'latex-posters'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            poppler-utils texlive-latex-extra texlive-fonts-recommended texlive-pictures
+      # No provider secrets or paid scanner are used by this workflow.
+      # Keep one skill per interpreter and use its declared dependencies.
+      - name: Run offline regressions
+        shell: python
+        env:
+          TEST_SKILL: ${{ matrix.skill }}
+        run: |
+          import json, os, pathlib, platform, subprocess, sys, tomllib
+
+          skill = os.environ["TEST_SKILL"]
+          manifest = tomllib.loads(pathlib.Path("tests/skill-requirements.toml").read_text())
+          entry = manifest["skills"][skill]
+          output = pathlib.Path("test-results")
+          output.mkdir()
+          command = ["uv", "run", "--no-project", "--python", entry.get("python", "3.13"),
+                     "--with", "pytest>=9.1.1", "--with", "pytest-socket"]
+          for package in entry["packages"]:
+              command += ["--with", package]
+          # Preserve the working cross-platform uv environment while excluding
+          # credentials. Native Windows POSIX exclusions now live on the tests,
+          # making their reasons visible as skips instead of -k deselections.
+          environment = {k: v for k, v in os.environ.items() if k.upper() in {
+              "PATH", "HOME", "USERPROFILE", "SYSTEMROOT", "WINDIR", "COMSPEC",
+              "PATHEXT", "TEMP", "TMP", "TMPDIR", "LOCALAPPDATA", "APPDATA",
+              "LANG", "LC_ALL", "UV_CACHE_DIR", "UV_PYTHON_INSTALL_DIR"
+          }}
+          environment["PYTHONDONTWRITEBYTECODE"] = "1"
+          environment["PYTHONUTF8"] = "1"
+          environment["MPLBACKEND"] = "Agg"
+          environment_code = (
+              "import sys, importlib.metadata, json; "
+              "print(json.dumps({'python':sys.version, 'packages':"
+              "{d.metadata['Name']:d.version for d in importlib.metadata.distributions()}}, sort_keys=True))"
+          )
+          prepared = subprocess.run(command + ["python", "-c", environment_code], env=environment,
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                    text=True, encoding="utf-8", errors="replace")
+          (output / "resolved-environment.log").write_text(prepared.stdout, encoding="utf-8")
+          if prepared.returncode:
+              print(prepared.stdout)
+              sys.exit(prepared.returncode)
+          command += ["python", "-m", "pytest", "tests/" + skill, "-q", "-ra",
+                      "--disable-socket", "--junitxml=" + str(output / "results.xml")]
+          metadata = {"platform": platform.platform(), "bootstrap_python": sys.version,
+                      "head_sha": os.environ["GITHUB_SHA"], "command": command}
+          (output / "environment.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+          print("Command:", command, flush=True)
+          result = subprocess.run(command, env=environment, stdout=subprocess.PIPE,
+                                  stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace")
+          (output / "pytest.log").write_text(result.stdout, encoding="utf-8")
+          print(result.stdout)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write(f"### {skill} on {platform.system()}\nExit code: {result.returncode}\n\n")
+              summary.write("Raw logs, JUnit results, and the command are attached. Skips are not passes.\n")
+          raise SystemExit(result.returncode)
+      - name: Preserve test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-security-${{ matrix.skill }}-${{ matrix.os }}
+          path: test-results/
+          if-no-files-found: error
+          retention-days: 30

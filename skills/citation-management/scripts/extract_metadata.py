@@ -54,7 +54,7 @@ class MetadataExtractor:
         identifier = identifier.strip()
         
         # Check if URL
-        if identifier.startswith('http://') or identifier.startswith('https://'):
+        if identifier.lower().startswith(('http://', 'https://')):
             return self._parse_url(identifier)
         
         # Check for DOI
@@ -83,6 +83,8 @@ class MetadataExtractor:
     def _parse_url(self, url: str) -> Tuple[str, str]:
         """Parse URL to extract identifier type and value."""
         parsed = urlparse(url)
+        if parsed.username is not None or parsed.password is not None:
+            raise ValueError('URLs containing credentials are not supported')
         
         # DOI URLs
         if parsed.hostname in ('doi.org', 'dx.doi.org'):
@@ -538,9 +540,14 @@ class MetadataExtractor:
         than scraping the page itself, and it fails honestly when absent.
         """
         try:
+            parsed = urlparse(url)
+            if parsed.scheme.lower() not in ('http', 'https') or not parsed.hostname:
+                raise ValueError('Expected an HTTP or HTTPS webpage URL')
+            if parsed.username is not None or parsed.password is not None:
+                raise ValueError('URLs containing credentials are not supported')
             response = self.session.get(url, timeout=15)
             if response.status_code != 200:
-                print(f'Error: URL returned status {response.status_code}: {url}', file=sys.stderr)
+                print(f'Error: webpage returned status {response.status_code}', file=sys.stderr)
                 return None
 
             head = response.text[:200000]
@@ -557,11 +564,14 @@ class MetadataExtractor:
                         print(f'Found DOI in page metadata: {doi}', file=sys.stderr)
                         return self.extract_from_doi(doi)
 
-            print(f'Error: No DOI found in page metadata for {url}', file=sys.stderr)
+            print('Error: No DOI found in page metadata', file=sys.stderr)
             return None
 
         except requests.exceptions.RequestException as e:
-            print(f'Error fetching {url}: {e}', file=sys.stderr)
+            print(f'Error fetching webpage ({type(e).__name__}); request details omitted', file=sys.stderr)
+            return None
+        except ValueError:
+            print('Error: invalid or credential-bearing webpage URL', file=sys.stderr)
             return None
 
 
@@ -575,9 +585,13 @@ class MetadataExtractor:
         Returns:
             BibTeX string or None
         """
-        id_type, clean_id = self.identify_type(identifier)
-        
-        print(f'Identified as {id_type}: {clean_id}', file=sys.stderr)
+        try:
+            id_type, clean_id = self.identify_type(identifier)
+        except ValueError:
+            print('Error: invalid or credential-bearing URL', file=sys.stderr)
+            return None
+
+        print(f'Identified as {id_type}' + (f': {clean_id}' if id_type != 'url' else ' (value omitted)'), file=sys.stderr)
         
         metadata = None
         
@@ -602,9 +616,13 @@ class MetadataExtractor:
 
     def extract_record(self, identifier: str) -> Optional[Dict]:
         """Extract metadata and return it with its rendered BibTeX attached."""
-        id_type, clean_id = self.identify_type(identifier)
+        try:
+            id_type, clean_id = self.identify_type(identifier)
+        except ValueError:
+            print('Error: invalid or credential-bearing URL', file=sys.stderr)
+            return None
 
-        print(f'Identified as {id_type}: {clean_id}', file=sys.stderr)
+        print(f'Identified as {id_type}' + (f': {clean_id}' if id_type != 'url' else ' (value omitted)'), file=sys.stderr)
 
         handlers = {
             'doi': self.extract_from_doi,
@@ -667,6 +685,8 @@ def main():
     parser.add_argument('--arxiv', action='append', help='arXiv ID (repeatable)')
     parser.add_argument('--url', action='append', help='URL to article (repeatable)')
     parser.add_argument('-i', '--input', help='Newline identifiers or search-results JSON file')
+    parser.add_argument('--allow-web-urls', action='store_true',
+                        help='Allow generic webpage URLs from --input after reviewing their destinations')
     parser.add_argument('-o', '--output', help='Output file for BibTeX (default: stdout)')
     parser.add_argument('--format', choices=['bibtex', 'json'], default='bibtex', help='Output format')
     parser.add_argument('--email', help='Email for NCBI E-utilities (recommended)')
@@ -686,9 +706,11 @@ def main():
     if args.url:
         identifiers.extend(args.url)
     
+    input_identifiers = []
     if args.input:
         try:
-            identifiers.extend(read_identifiers(args.input))
+            input_identifiers = read_identifiers(args.input)
+            identifiers.extend(input_identifiers)
         except Exception as e:
             print(f'Error reading input file: {e}', file=sys.stderr)
             sys.exit(1)
@@ -699,6 +721,16 @@ def main():
     
     # Extract metadata
     extractor = MetadataExtractor(email=args.email)
+    # Search-result URLs are publisher-controlled data. Check the entire input
+    # before any network request, rather than treating a JSON URL as permission
+    # to fetch an arbitrary destination. Known identifiers remain usable.
+    for identifier in input_identifiers:
+        try:
+            id_type, _ = extractor.identify_type(identifier)
+        except ValueError:
+            parser.error('--input contains an invalid or credential-bearing URL')
+        if id_type == 'url' and not args.allow_web_urls:
+            parser.error('--input contains generic webpage URLs; review their destinations and use --allow-web-urls to fetch them')
     records = []
 
     for i, identifier in enumerate(identifiers):

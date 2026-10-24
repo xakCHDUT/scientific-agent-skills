@@ -1,0 +1,15 @@
+Command: uv run --no-project --python 3.13 --with pytest python -m pytest tests/pathogen-variant-surveillance -q -ra --junitxml=docs/validation-2026-10-24/stdlib/pathogen-variant-surveillance.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+........................................................................ [ 54%]
+...................................................ssssssss.         [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1042: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1055: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1037: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1027: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1046: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1017: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1032: set LAPIS_LIVE_TESTS=1 to run live API checks
+SKIPPED [1] tests/pathogen-variant-surveillance/test_scripts.py:1022: set LAPIS_LIVE_TESTS=1 to run live API checks
+124 passed, 8 skipped, 4 subtests passed in 0.40s

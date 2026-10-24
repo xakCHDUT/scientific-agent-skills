@@ -1,0 +1,15 @@
+Command: uv run --no-project --python 3.13 --with 'pytest>=9.1.1' --with pytest-socket --with requests --with python-dotenv python -m pytest tests/scientific-schematics -q -ra --disable-socket --junitxml=docs/validation-2026-10-24/scientific-schematics-linux.xml
+Environment: credential-free allowlist; Python sockets blocked by sitecustomize.
+
+...................... [ 59%]
+...............                                     [100%]
+=============================== warnings summary ===============================
+tests/scientific-schematics/test_image_api.py::ImageApiTests::test_api_error_is_not_retried_or_leaked_as_an_image
+  /root/.cache/uv/archive-v0/wVj4qNatjP0miyRm/lib/python3.13/site-packages/pytest_socket/__init__.py:138: UserWarning: A test tried to use socket.socket.
+    raise SocketBlockedError()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+37 passed, 1 warning, 71 subtests passed in 2.25s
+
+
+Validation recorder: process exit 0; JUnit {"tests": "108", "failures": "0", "errors": "0", "skipped": "0", "time": "2.261"}

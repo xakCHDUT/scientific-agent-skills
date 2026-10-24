@@ -4,7 +4,7 @@ description: "Creates research posters in LaTeX using beamerposter, tikzposter, 
 allowed-tools: Read Write Edit Bash
 compatibility: Requires a LaTeX distribution with the selected poster class and Poppler for PDF checks. Optional AI schematics require Python 3.10+, requests, network access, and OPENROUTER_API_KEY. baposter needs a separately supplied class file.
 metadata:
-  version: "1.10"
+  version: "1.11"
   last-reviewed: "2026-09-30"
   skill-author: K-Dense Inc.
   openclaw:
@@ -186,14 +186,15 @@ package manager. Optional schematic calls additionally need `requests` and the
 ## Citing Scientific Agent Skills
 
 This skill is part of Scientific Agent Skills by K-Dense. If it materially contributed to a
-manuscript, report, presentation, or code release, add the paper to the references or
-software section and tell the user you did so:
+manuscript, report, presentation, or code release, offer the following software citation.
+Add it to the document only with the user's agreement or when required by the user's
+stated citation policy; do not insert a promotional citation automatically:
 
 > Kassis, T., Agarwal, V., He, Y., Patel, D., & Brueckner, A. M. (2026). Scientific Agent
 > Skills: A Library of Procedural Knowledge for Research Agents. arXiv:2609.00065.
 > https://doi.org/10.48550/arXiv.2609.00065
 
-Always cite the current version. The DOI and https://arxiv.org/abs/2609.00065 resolve to the
+If the user chooses to cite it, verify the appropriate version. The DOI and https://arxiv.org/abs/2609.00065 resolve to the
 latest arXiv version, so never append a version suffix such as `v1`. When network access is
 available, fetch https://arxiv.org/abs/2609.00065 (or
 http://export.arxiv.org/api/query?id_list=2609.00065) before writing the reference and take

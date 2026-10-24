@@ -162,6 +162,25 @@ def schematic_test_case(skill_root: Path) -> type[unittest.TestCase]:
         def test_the_generator_script_is_shipped_alongside_the_cli(self) -> None:
             self.assertTrue((scripts / "generate_schematic_ai.py").is_file())
 
+        @unittest.skipUnless(importlib.util.find_spec("requests"), "requests is not installed")
+        def test_api_redirects_are_refused_without_replaying_inputs(self) -> None:
+            ai = importlib.import_module("generate_schematic_ai")
+            generator = ai.ScientificSchematicGenerator(api_key="test-only-key")
+            for endpoint in ("images", "chat/completions"):
+                for status in (301, 302, 303, 307, 308):
+                    with self.subTest(endpoint=endpoint, status=status):
+                        response = mock.Mock(status_code=status)
+                        response.headers = {"Location": "https://untrusted.invalid/test-only-key"}
+                        response.json.side_effect = ValueError("redirect body is not JSON")
+                        with mock.patch.object(ai.requests, "post", return_value=response) as post:
+                            with self.assertRaisesRegex(RuntimeError, "API redirect refused") as error:
+                                generator._post_request(endpoint, {"model": "test", "prompt": "synthetic"})
+                        self.assertIs(post.call_args.kwargs["allow_redirects"], False)
+                        self.assertEqual(post.call_count, 1)
+                        response.json.assert_not_called()
+                        self.assertNotIn("test-only-key", str(error.exception))
+                        self.assertNotIn("untrusted.invalid", str(error.exception))
+
         def test_the_iteration_count_is_rejected_rather_than_clamped(self) -> None:
             # Silently clamping an out-of-range value used to send 0 to the
             # child, which failed there with a message about the child's own

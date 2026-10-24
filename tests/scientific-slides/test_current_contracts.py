@@ -89,6 +89,65 @@ def test_provider_error_does_not_echo_credential():
     assert "secret-test" not in str(error.value)
 
 
+@pytest.mark.parametrize("endpoint", ["images", "chat/completions"])
+@pytest.mark.parametrize("status", [301, 302, 303, 307, 308])
+def test_api_redirect_refuses_to_replay_prompt_or_attachments(endpoint, status):
+    generator = ai.SlideImageGenerator(api_key="secret-test")
+    response = Mock(status_code=status)
+    response.headers = {"Location": "https://untrusted.invalid/secret-test"}
+    response.json.side_effect = ValueError("redirect body is not JSON")
+    payload = {"model": "test", "prompt": "synthetic", "input_references": ["synthetic-image"]}
+    with patch.object(ai.requests, "post", return_value=response) as post:
+        with pytest.raises(RuntimeError, match="API redirect refused") as error:
+            generator._post_request(endpoint, payload)
+    assert post.call_args.kwargs["allow_redirects"] is False
+    assert post.call_count == 1
+    response.json.assert_not_called()
+    assert "secret-test" not in str(error.value)
+    assert "untrusted.invalid" not in str(error.value)
+
+
+@pytest.mark.parametrize("endpoint", ["images", "chat/completions"])
+@pytest.mark.parametrize("status", [307, 308])
+@pytest.mark.parametrize("scheme", ["https", "http"])
+def test_real_redirect_handling_never_reaches_second_origin(endpoint, status, scheme):
+    """Run Requests' real redirect logic over an in-memory transport, never sockets."""
+    import socket
+    from requests.adapters import BaseAdapter
+    from requests.models import Response
+
+    class RedirectAdapter(BaseAdapter):
+        def __init__(self):
+            self.sent = []
+
+        def send(self, request, **kwargs):
+            self.sent.append(request)
+            response = Response()
+            response.request = request
+            response.url = request.url
+            response.status_code = status if len(self.sent) == 1 else 200
+            response._content = b'{"ok": true}'
+            response.headers["Location"] = f"{scheme}://untrusted.invalid/receive"
+            return response
+
+        def close(self):
+            pass
+
+    adapter = RedirectAdapter()
+    generator = ai.SlideImageGenerator(api_key="dummy-key")
+    payload = {"model": "test", "prompt": "synthetic", "input_references": ["synthetic-image"]}
+    with ai.requests.Session() as session:
+        session.trust_env = False
+        session.mount("https://", adapter)
+        session.mount("http://", adapter)
+        with patch.object(ai.requests, "post", side_effect=session.post), \
+             patch.object(socket.socket, "connect", side_effect=AssertionError("network disabled")):
+            with pytest.raises(RuntimeError, match="API redirect refused"):
+                generator._post_request(endpoint, payload)
+    assert len(adapter.sent) == 1
+    assert adapter.sent[0].url == f"https://openrouter.ai/api/v1/{endpoint}"
+
+
 def test_explicit_file_order_and_duplicate_identity_are_preserved(tmp_path):
     for name in ("title.png", "intro.png", "methods.png"):
         (tmp_path / name).touch()
